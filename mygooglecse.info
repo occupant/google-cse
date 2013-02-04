@@ -1,0 +1,3 @@
+name = Google Custom Search Engine
+description = Search VF sites with Google custom search.
+core = 7.x
