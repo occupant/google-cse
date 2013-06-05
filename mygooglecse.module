@@ -56,21 +56,9 @@ function mygooglecse_block_view($delta = '') {
   }
 }*/
 
-// We set up permissions to use the search.
-/**
- * Implements hook_permission().
- */
-function mygooglecse_permission() {
-  return array(
-    'access mygooglecse_searchpage content' => array(
-      'title' => t('Use google custom search'),
-    )
-  );
-}
 
 /**
 * Implementation of hook_menu()
-* 
 */
 function mygooglecse_menu() {
   // Here we set up the page where the results will display:
@@ -78,11 +66,19 @@ function mygooglecse_menu() {
     'title' => 'Search ',
     'description' => 'My Google Custom Search',
     'page callback' => 'mygooglecse_searchpage', // The function that will be called to set up the search page
-    'access arguments' => array('Use google custom search'), // Those with this permission will be allowed to see the results
+    'access arguments' => array('use_google_custom_search'), // Those with this permission will be allowed to see the results
     'type' => MENU_NORMAL_ITEM,
   );
-
   return $items;
+}
+
+function mygooglecse_permission() {
+  return array(
+    'use_google_custom_search' => array(
+      'title' => t('Use google custom search'),
+      'description' => t('Who can have access to the google search results page.'),
+    ),
+  );
 }
 
 // Here we set up the page:
